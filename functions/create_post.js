@@ -11,12 +11,10 @@ module.exports = (req, res) => {
 
   const { uid, uuid, post } = req.body;
 
-  console.log({ post });
-
   admin
     .database()
     .ref(`users/${uid}/posts/${uuid}`)
-    .update(({ post }), () => {
+    .update({ post }, () => {
       return res.send({ success: true });
     })
     .catch(error => {
