@@ -5,15 +5,21 @@ module.exports = (req, res) => {
     return res.status(422).send({ error: 'No valid user was provided' });
   }
 
-  const { uid, profile } = req.body;
+  if (!req.body.post.media) {
+    return res.status(422).send({ error: 'No media was received in post' });
+  }
+
+  const { uid, uuid, post } = req.body;
+
+  console.log({ post });
 
   admin
     .database()
-    .ref(`users/${uid}`)
-    .update({ profile }, () => {
+    .ref(`users/${uid}/posts/${uuid}`)
+    .update(({ post }), () => {
       return res.send({ success: true });
     })
-    .catch(err => {
+    .catch(error => {
       res.status(422).send({ success: false, error: err });
     });
 };
