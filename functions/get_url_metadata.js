@@ -20,6 +20,6 @@ module.exports = async (req, res) => {
       });
     }
     const { ogSiteName, ogVideo } = results.data;
-    res.send({ success: true, source: { name: ogSitename, media: ogVideo } });
+    res.send({ success: true, source: { name: ogSiteName, media: ogVideo } });
   });
 };
