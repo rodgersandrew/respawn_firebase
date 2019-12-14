@@ -12,10 +12,12 @@ module.exports = (req, res) => {
   const { uid, uuid, post } = req.body;
 
   const postRequest = {
+    postID: uuid,
     owner: uid,
     media: post.media,
     aspect: post.aspect,
     mediaType: post.type,
+    likes: 0,
     tags: post.tags,
     createdAt: admin.database.ServerValue.TIMESTAMP
   };

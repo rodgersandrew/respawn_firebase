@@ -17,7 +17,8 @@
     "metascraper": "^5.8.9",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
-    "open-graph-scraper": "^3.6.2"
+    "open-graph-scraper": "^3.6.2",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.1.6"

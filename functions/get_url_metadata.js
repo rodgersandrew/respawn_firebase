@@ -19,6 +19,7 @@ module.exports = async (req, res) => {
         error: 'Could not get tags from URL provided'
       });
     }
+    console.log(results);
     const { ogSiteName, ogVideo } = results.data;
     res.send({ success: true, source: { name: ogSiteName, media: ogVideo } });
   });
