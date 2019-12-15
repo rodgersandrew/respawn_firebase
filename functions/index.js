@@ -7,6 +7,7 @@ const getURLMetaData = require('./get_url_metadata');
 const likePost = require('./like_post');
 const unlikePost = require('./unlike_post');
 const createComment = require('./create_comment');
+const deleteComment = require('./delete_comment');
 
 const serviceAccount = require('./config/firebase_admin.json');
 
@@ -26,3 +27,4 @@ exports.getURLMetaData = functions.https.onRequest(getURLMetaData);
 
 // Comments
 exports.createComment = functions.https.onRequest(createComment);
+exports.deleteComment = functions.https.onRequest(deleteComment);
