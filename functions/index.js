@@ -10,6 +10,7 @@ const createComment = require('./create_comment');
 const deleteComment = require('./delete_comment');
 const reportComment = require('./report_comment');
 const reportPost = require('./report_post');
+const deletePost = require('./delete_post');
 
 const serviceAccount = require('./config/firebase_admin.json');
 
@@ -27,6 +28,7 @@ exports.likePost = functions.https.onRequest(likePost);
 exports.unlikePost = functions.https.onRequest(unlikePost);
 exports.getURLMetaData = functions.https.onRequest(getURLMetaData);
 exports.reportPost = functions.https.onRequest(reportPost);
+exports.deletePost = functions.https.onRequest(deletePost);
 
 // Comments
 exports.createComment = functions.https.onRequest(createComment);
