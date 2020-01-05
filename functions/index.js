@@ -13,6 +13,8 @@ const reportPost = require('./report_post');
 const deletePost = require('./delete_post');
 const savePost = require('./save_post');
 const unsavePost = require('./unsave_post');
+const likeComment = require('./like_comment');
+const unlikeComment = require('./unlike_comment');
 
 const serviceAccount = require('./config/firebase_admin.json');
 
@@ -38,3 +40,5 @@ exports.unsavePost = functions.https.onRequest(unsavePost);
 exports.createComment = functions.https.onRequest(createComment);
 exports.deleteComment = functions.https.onRequest(deleteComment);
 exports.reportComment = functions.https.onRequest(reportComment);
+exports.likeComment = functions.https.onRequest(likeComment);
+exports.unlikeComment = functions.https.onRequest(unlikeComment);
