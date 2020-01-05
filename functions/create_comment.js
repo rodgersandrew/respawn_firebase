@@ -29,7 +29,8 @@ module.exports = async (req, res) => {
     owner: userID,
     ownerProfile: { ...userProf.val() },
     comment: comment,
-    createdAt: admin.database.ServerValue.TIMESTAMP
+    createdAt: admin.database.ServerValue.TIMESTAMP,
+    likesCount: 0
   };
 
   let commentRes = await commentRef.push(commentRequest);
