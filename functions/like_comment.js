@@ -1,4 +1,5 @@
-const admin = require('firebase-admin');
+const admin = require("firebase-admin");
+const _ = require("lodash");
 
 module.exports = async (req, res) => {
   const { uid, commentID } = req.body;
@@ -7,7 +8,7 @@ module.exports = async (req, res) => {
     return res.status(422).send({
       success: false,
       payload: { uid: uid, commentID: commentID },
-      error: 'User token and Comment ID are both required'
+      error: "User token and Comment ID are both required"
     });
   }
 
@@ -23,19 +24,22 @@ module.exports = async (req, res) => {
 
   var userDislikesComment = false;
 
-  commentDislikeRef.once('value', snapshot => {
-    if (snapshot.val()) {
-      userDislikesComment = true;
-      commentDislikeRef.remove();
-    }
-  });
+  let dislikeToken = await commentDislikeRef.once("value");
+
+  console.log(dislikeToken.val());
+
+  if (dislikeToken.val()) {
+    userDislikesComment = true;
+    commentDislikeRef.remove();
+  }
+
 
   await commentRef
-    .child('likesCount')
-    .once('value', async snapshot => {
+    .child("likesCount")
+    .once("value", async snapshot => {
       const countToChange = userDislikesComment ? 2 : 1;
 
-      const newLikesCount = snapshot.val() ? snapshot.val() + countToChange : 1;
+      const newLikesCount = snapshot.val() + countToChange;
       await commentRef.update({ likesCount: newLikesCount });
     })
     .catch(err => {
