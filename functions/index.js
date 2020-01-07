@@ -1,26 +1,28 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 
-const updateUserProfile = require('./update_user_profile');
-const createPost = require('./create_post');
-const getURLMetaData = require('./get_url_metadata');
-const likePost = require('./like_post');
-const unlikePost = require('./unlike_post');
-const createComment = require('./create_comment');
-const deleteComment = require('./delete_comment');
-const reportComment = require('./report_comment');
-const reportPost = require('./report_post');
-const deletePost = require('./delete_post');
-const savePost = require('./save_post');
-const unsavePost = require('./unsave_post');
-const likeComment = require('./like_comment');
-const unlikeComment = require('./unlike_comment');
+const updateUserProfile = require("./update_user_profile");
+const createPost = require("./create_post");
+const getURLMetaData = require("./get_url_metadata");
+const likePost = require("./like_post");
+const unlikePost = require("./unlike_post");
+const createComment = require("./create_comment");
+const deleteComment = require("./delete_comment");
+const reportComment = require("./report_comment");
+const reportPost = require("./report_post");
+const deletePost = require("./delete_post");
+const savePost = require("./save_post");
+const unsavePost = require("./unsave_post");
+const likeComment = require("./like_comment");
+const unlikeComment = require("./unlike_comment");
+const clearCommentLike = require("./clear_comment_like");
+const clearCommentDislike = require("./clear_comment_dislike");
 
-const serviceAccount = require('./config/firebase_admin.json');
+const serviceAccount = require("./config/firebase_admin.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://respawn-48469.firebaseio.com'
+  databaseURL: "https://respawn-48469.firebaseio.com"
 });
 
 // User
@@ -42,3 +44,5 @@ exports.deleteComment = functions.https.onRequest(deleteComment);
 exports.reportComment = functions.https.onRequest(reportComment);
 exports.likeComment = functions.https.onRequest(likeComment);
 exports.unlikeComment = functions.https.onRequest(unlikeComment);
+exports.clearCommentLike = functions.https.onRequest(clearCommentLike)
+exports.clearCommentDislike = functions.https.onRequest(clearCommentDislike)
